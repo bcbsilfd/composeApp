@@ -1,11 +1,13 @@
 package com.github.bcbsilfd.composeapp
 
 import android.content.Context
+import android.graphics.Shader
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.*
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -14,8 +16,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Alignment.Companion.End
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ShaderBrush
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
@@ -33,7 +38,6 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             ComposeAppTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
                     CustomerPage()
                 }
@@ -82,7 +86,7 @@ fun Card(name: String) {
 
     Column(
         modifier = Modifier
-            .shadow(2.dp, RoundedCornerShape(12.dp))
+            .border(1.dp, Color(0x66B3B3B3), RoundedCornerShape(12.dp))
             .padding(start = 16.dp, top = 16.dp, bottom = 16.dp)
     ) {
         Row(modifier = Modifier.padding(end = 16.dp)) {
@@ -129,8 +133,9 @@ fun Card(name: String) {
 
 @Composable
 fun CustomerPage() {
-    Column {
+    Column(modifier = Modifier.padding(8.dp)) {
         Card(name = "Cards")
+        Spacer(modifier = Modifier.padding(vertical = 8.dp))
         Card(name = "Credits")
     }
 }
